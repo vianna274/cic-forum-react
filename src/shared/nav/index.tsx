@@ -1,64 +1,56 @@
-import { IconButton, Menu, MenuItem } from '@material-ui/core';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import './nav.scss';
+
+import { MenuItem, Button } from '@material-ui/core';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { UserContext } from '../../contexts/user/user.state';
+import { Auth } from '../../core/firebase/auth';
+import { UserContext } from '../../core/user/user.state';
+import Sidebar from 'react-sidebar';
 
 export default function Nav() {
 
-  const [anchorEl, setAnchorEl] = useState();
+  const [ open, setOpen] = useState(false);
   const { state } = useContext(UserContext);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  }
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  }
-
-  const renderLoggedMenu = () => (
-    <div>
-      <IconButton
-        aria-owns={anchorEl ? 'simple-menu' : undefined}
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
-        <MoreVertIcon />
-      </IconButton>
-      <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        <Link to="/">
-          <MenuItem onClick={handleClose}>Home</MenuItem>
-        </Link>
-      </Menu>
+  const renderLoginNav = () => (
+    <div className="d-flex justify-content-center flex-column px-2">
+      <img className="profile-pic mt-5 mb-3" src={state.user.photoURL || ''} alt="Profile"/>
+      <p className="name"> {state.user.displayName} </p>
+      <Link to="/">
+        <MenuItem onClick={() => setOpen(false)}>Home</MenuItem>
+      </Link>
+      <MenuItem onClick={() => Auth.getAuth().signOut() && setOpen(false)}>Logout</MenuItem>
     </div>
   );
 
-  const renderNormalMenu = () => (
-    <div>
-      <IconButton
-        aria-owns={anchorEl ? 'simple-menu' : undefined}
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
-        <MoreVertIcon />
-      </IconButton>
-      <Menu id="simple-menu" anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        <Link to="/" >
-          <MenuItem onClick={handleClose}>Home</MenuItem>
-        </Link>
-        <Link to="/login" >
-          <MenuItem onClick={handleClose}>Sign in</MenuItem>
-        </Link>
-        <Link to="/signup" >
-          <MenuItem onClick={handleClose}>Sign Up</MenuItem>
-        </Link>
-      </Menu>
+  const renderLogoutNav = () => (
+    <div className="d-flex justify-content-center flex-column px-2">
+      <Link to="/" >
+        <MenuItem onClick={() => setOpen(false)}>Home</MenuItem>
+      </Link>
+      <Link to="/login" >
+        <MenuItem onClick={() => setOpen(false)}>Sign in</MenuItem>
+      </Link>
+      <Link to="/signup" >
+        <MenuItem onClick={() => setOpen(false)}>Sign Up</MenuItem>
+      </Link>
     </div>
   );
 
-  return state.auth
-    ? renderLoggedMenu()
-    : renderNormalMenu();
+  return (
+    <Sidebar
+      sidebarClassName="custom-sidebar-class"
+      sidebar={<div>
+        {state.auth
+          ? renderLoginNav()
+          : renderLogoutNav()
+        }
+      </div>}
+      open={open}
+      onSetOpen={setOpen}>
+      <Button onClick={() => setOpen(true)}>Open</Button>
+    </Sidebar>
+
+  );
 }

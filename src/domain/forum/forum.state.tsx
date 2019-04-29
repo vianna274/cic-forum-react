@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from 'react'
 import { ForumState, ForumAction, ForumActionType } from './forum.models';
-import { ContextProps } from '../../contexts/models';
+import { ContextProps } from '../../core/models';
 
 const dispatcher = (state: ForumState, action: ForumAction) => {
   switch (action.type) {

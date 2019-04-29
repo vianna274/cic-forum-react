@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
 
-import { ApplicationActionType } from '../../contexts/application/application.models';
-import { ApplicationContext } from '../../contexts/application/application.state';
+import { ApplicationActionType } from '../../core/application/application.models';
+import { ApplicationContext } from '../../core/application/application.state';
 import { ForumActionType, ForumCategory } from './forum.models';
 import { ForumService } from './forum.service';
 import ForumProvider, { ForumContext } from './forum.state';
@@ -23,11 +23,10 @@ export default function Forum() {
         const response = await ForumService.getCategories();
         setCategories(response);
         setLoaded();
-        console.log(state);
         return response;
       } catch (err) {
         // TODO: Mostrar modal de erro
-        console.log(err);
+        console.error(err);
       }
       setLoaded();
     }

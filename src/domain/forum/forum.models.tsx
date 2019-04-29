@@ -1,4 +1,4 @@
-import { User } from "../../contexts/user/user.models";
+import { User } from "../../core/user/user.models";
 
 export interface ForumPost {
   title: string;

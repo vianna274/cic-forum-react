@@ -5,7 +5,9 @@ import { ContextProps } from '../models';
 const userDispatcher = (state: UserState, action: UserAction) => {
   switch (action.type) {
     case UserActionType.SET_USER:
-      return { ...state, username: action.username, auth: true };
+      return { ...state, user: action.user, auth: true };
+    case UserActionType.REMOVE_USER:
+      return { ...state, user: null, auth: false };
     default:
       return state;
   }
@@ -13,7 +15,7 @@ const userDispatcher = (state: UserState, action: UserAction) => {
 
 
 export const initialContext: UserState = {
-  username: '',
+  user: null as unknown as firebase.User,
   auth: false,
 };
 
@@ -21,6 +23,7 @@ export const UserContext = createContext((initialContext as unknown) as ContextP
 
 export default function UserProvider({ children }) {
   const [state, dispatch] = useReducer(userDispatcher, initialContext as never);
+  
   return (
     <UserContext.Provider value={{ state, dispatch }}>
       {children}

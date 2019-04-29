@@ -5,9 +5,9 @@ import React, { useContext, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 
-import { ApplicationActionType } from '../../contexts/application/application.models';
-import { ApplicationContext } from '../../contexts/application/application.state';
-import { UserContext } from '../../contexts/user/user.state';
+import { ApplicationActionType } from '../../core/application/application.models';
+import { ApplicationContext } from '../../core/application/application.state';
+import { UserContext } from '../../core/user/user.state';
 import { Auth } from '../../services/auth';
 
 interface SignupState {

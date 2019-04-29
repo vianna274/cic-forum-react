@@ -2,7 +2,7 @@ import { Button, Paper } from '@material-ui/core';
 import React, { useContext } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../contexts/user/user.state';
+import { UserContext } from '../../core/user/user.state';
 
 export default function Home() {
 

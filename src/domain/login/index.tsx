@@ -1,23 +1,15 @@
 import './login.scss';
 
 import { Button, Paper } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { Col, Container } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 
-import { ApplicationActionType } from '../../contexts/application/application.models';
-import { ApplicationContext } from '../../contexts/application/application.state';
-import { UserActionType } from '../../contexts/user/user.models';
-import { UserContext } from '../../contexts/user/user.state';
-import { Auth } from '../../services/auth';
-
-
-interface LoginState {
-  username: string;
-  password: string;
-  logged: boolean;
-}
+import { ApplicationActionType } from '../../core/application/application.models';
+import { ApplicationContext } from '../../core/application/application.state';
+import { UserActionType } from '../../core/user/user.models';
+import { UserContext } from '../../core/user/user.state';
+import { Auth } from '../../core/firebase/auth';
 
 export default function Login() {
 
@@ -26,36 +18,32 @@ export default function Login() {
 
   const setLoaded = () => appDispatch({ type: ApplicationActionType.LOADED });
   const setLoading = () => appDispatch({ type: ApplicationActionType.LOADING });
-  const setUser = (username: string) => userDispatch({ username, type: UserActionType.SET_USER });
+  const setUser = (user: firebase.User) => userDispatch({ user, type: UserActionType.SET_USER });
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const submit = (event) => {
-    event.preventDefault();
-    login(username, password);
-  }
-
-  const handleChange = (name: keyof LoginState) => event => {
-    if (name === 'username') { return setUsername(event.target.value); }
-    setPassword(event.target.value);
+  const authHandler = (authData: firebase.auth.UserCredential) => {
+    authData && authData.user ? setUser(authData.user) : console.error('Error authenticating');
   };
 
-  const login = async (username: string, password: string) => {
+  const facebookAuth = async (ev) => {
     try {
       setLoading();
-      const response = await Auth.login(username, password);
-      setUser(response.username);
-      console.log('User logged ' + JSON.stringify(response));
+      ev.preventDefault();
+
+      const facebookAuthProvider = Auth.facebookOAuth();
+      const auth = Auth.getAuth();
+
+      const authData = auth.currentUser
+        ? await auth.currentUser.linkWithPopup(facebookAuthProvider)
+        : await auth.signInWithPopup(facebookAuthProvider);
+      authHandler(authData);
+
     } catch (err) {
-      // TODO: Exibir modal de erro
       console.error(err);
     }
-
     setLoaded();
-  }
-  
-  if (state.auth) { return <Redirect to="/"></Redirect> };
+  };
+
+  if (state.user) { return <Redirect to="/"></Redirect> };
 
   return (
     <Container
@@ -66,41 +54,17 @@ export default function Login() {
         xs={6}>
         <Paper
           className="paper">
-          <form onSubmit={(e) => submit(e)}>
-            <div className="px-3">
-              <TextField
-                required
-                id="username"
-                label="username"
-                value={username}
-                onChange={handleChange('username')}
-                margin="normal"
-                autoComplete="username"
-                fullWidth
-              />
-              <TextField
-                required
-                id="password"
-                label="password"
-                autoComplete="password"
-                type="password"
-                value={password}
-                onChange={handleChange('password')}
-                margin="normal"
-                fullWidth
-              />
-            </div>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              id="sign-in-button"
-              className="sign-in-button mt-5"
-            >
-              Sign in
-            </Button>
-          </form>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            id="sign-in-button"
+            className="sign-in-button mt-5"
+            onClick={(ev) => facebookAuth(ev)}
+          >
+            Sign in with Facebook
+          </Button>
         </Paper>
       </Col>
     </Container>

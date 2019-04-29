@@ -7,16 +7,16 @@ export interface User {
 }
 
 export interface UserState {
-  username: string;
+  user: firebase.User;
   auth: boolean;
 }
 
 export enum UserActionType {
-  SET_USER = 'set_user'
+  SET_USER = 'set_user',
+  REMOVE_USER = 'remove_user'
 }
 
 export interface UserAction {
   type: UserActionType;
-  username?: string;
-  password?: string;
+  user?: firebase.User;
 }

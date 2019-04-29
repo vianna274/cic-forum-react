@@ -1,8 +1,8 @@
 import React from 'react';
 
-import UserProvider from './contexts/user/user.state';
+import UserProvider from './core/user/user.state';
 import Router from './shared/router';
-import ApplicationProvider from './contexts/application/application.state';
+import ApplicationProvider from './core/application/application.state';
 
 export default function App() {
   return (
