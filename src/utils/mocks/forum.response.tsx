@@ -10,7 +10,6 @@ export const postsMock: ForumPost[] = [
       username: 'teste', 
       firstName: 'teste', 
       lastName: 'teste', 
-      birthDay: '1999-01-01' ,
       id: '1'
     }
   },
@@ -23,7 +22,6 @@ export const postsMock: ForumPost[] = [
       username: 'teste11', 
       firstName: 'teste', 
       lastName: 'teste', 
-      birthDay: '1999-01-01' ,
       id: '1'
     }
   }

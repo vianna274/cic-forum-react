@@ -7,7 +7,7 @@ import { Container } from 'react-bootstrap';
 import { ApplicationActionType } from '../../core/application/models';
 import { ApplicationContext } from '../../core/application/reducer';
 import { UserContext } from '../../core/user/reducer';
-import { ErrorResponse } from '../../core/error/models';
+import { ErrorResponse } from '../../utils/error/models';
 import { UserSignup, User, UserActionType } from '../../core/user/models';
 import { UserService } from '../../core/user/service';
 import { REQUEST_CANCELLED } from '../../core/constants';

@@ -2,7 +2,6 @@ import './login.scss';
 
 import { Button, Paper } from '@material-ui/core';
 import React, { useContext } from 'react';
-import { Col, Container } from 'react-bootstrap';
 
 import { ApplicationActionType } from '../../core/application/models';
 import { ApplicationContext } from '../../core/application/reducer';
@@ -43,12 +42,8 @@ export default function Login() {
   };
 
   return (
-    <Container
-      className="d-flex justify-content-center"
-      fluid>
-      <Col
-        className="input-group px-0"
-        xs={6}>
+    <div className="container-fluid d-flex justify-content-center">
+      <div className="input-group px-0 col-6">
         <Paper
           className="paper">
           <Button
@@ -63,7 +58,7 @@ export default function Login() {
             Sign in with Facebook
           </Button>
         </Paper>
-      </Col>
-    </Container>
+      </div>
+    </div>
   );
 }

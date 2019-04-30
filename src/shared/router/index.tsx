@@ -10,6 +10,7 @@ import { withAuthentication } from '../../utils/guards/withAuthentication';
 import { withoutAuthentication } from '../../utils/guards/withoutAuthentication';
 import Auth from '../auth';
 import Header from '../header';
+import Profile from '../../domain/profile';
 
 export default function Router() {
 
@@ -20,6 +21,7 @@ export default function Router() {
       <Route path="/login" exact component={withoutAuthentication(Login)} />
       <Route path="/signup" exact component={completeSignup(Signup)} />
       <Route path="/forum" exact component={withAuthentication(Forum)} />
+      <Route path="/profile" exact component={withAuthentication(Profile)} />
       <Auth />
     </BrowserRouter>
   );
