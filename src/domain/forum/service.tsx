@@ -1,11 +1,11 @@
 import { sleep } from "../../utils/sleep";
-import { categoriesMock } from "../../utils/mocks/forum.response";
+import { semestersMock } from "../../utils/mocks/forum.response";
 
 export const ForumService = {
-  getCategories: async () => {
+  getSemesters: async () => {
     try {
       sleep(3000);
-      return categoriesMock;
+      return semestersMock;
     } catch (err) {
       throw(err);
     }

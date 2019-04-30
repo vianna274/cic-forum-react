@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import { UserContext } from '../user/user.state';
+import { UserContext } from '../../core/user/reducer';
 
-const withoutAuthentication = BaseComponent => props => {
+export const withoutAuthentication = BaseComponent => props => {
   const { state } = useContext(UserContext);
 
   if (state.user) { return <Redirect to="/"></Redirect>; }
@@ -11,4 +11,3 @@ const withoutAuthentication = BaseComponent => props => {
   return <BaseComponent {...props} />;
 }
 
-export default withoutAuthentication;

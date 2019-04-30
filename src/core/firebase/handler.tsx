@@ -1,7 +1,7 @@
-import fbase from './';
+import fbase from '.';
 import firebase from 'firebase';
 
-export const Auth = {
+export const FirebaseAuth = {
   getAuth: () => {
     return fbase.auth();
   },

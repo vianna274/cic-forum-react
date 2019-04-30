@@ -1,46 +1,45 @@
 import './signup.scss';
 
 import { Button, Paper, TextField } from '@material-ui/core';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Container } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
 
-import { ApplicationActionType } from '../../core/application/application.models';
-import { ApplicationContext } from '../../core/application/application.state';
-import { UserContext } from '../../core/user/user.state';
-import { Auth } from '../../services/auth';
+import { ApplicationActionType } from '../../core/application/models';
+import { ApplicationContext } from '../../core/application/reducer';
+import { UserContext } from '../../core/user/reducer';
+import { ErrorResponse } from '../../core/error/models';
+import { UserSignup, User, UserActionType } from '../../core/user/models';
+import { UserService } from '../../core/user/service';
+import { REQUEST_CANCELLED } from '../../core/constants';
 
 interface SignupState {
   firstName: string;
   lastName: string;
-  birthDay: string;
   username: string;
   password: string;
 }
 
 export default function Signup() {
 
-  const { dispatch } = useContext(ApplicationContext);
-  const { state: userState } = useContext(UserContext);
+  const { dispatch: appDispatch } = useContext(ApplicationContext);
+  const { state:userState, dispatch: userDispatch } = useContext(UserContext);
 
-  const setLoaded = () => dispatch({ type: ApplicationActionType.LOADED });
-  const setLoading = () => dispatch({ type: ApplicationActionType.LOADING });
+  const setLoaded = () => appDispatch({ type: ApplicationActionType.LOADED });
+  const setLoading = () => appDispatch({ type: ApplicationActionType.LOADING });
+
+  const setUser = (user: User) => userDispatch({ user, type: UserActionType.SET_USER });
+
+  const cancelToken = UserService.getCancelToken();
 
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
-    birthDay: '1999-01-01',
     username: '',
     password: ''
   } as SignupState);
 
-  const {
-    firstName,
-    lastName,
-    birthDay,
-    username,
-    password
-  } = state;
+  // eslint-disable-next-line
+  useEffect(() => () => cancelToken.cancel(REQUEST_CANCELLED), []);
 
   const handleChange = (field: keyof SignupState, event: React.ChangeEvent) => {
     const inputEvent = event as React.ChangeEvent<HTMLInputElement>;
@@ -48,19 +47,20 @@ export default function Signup() {
     setState({ ...state, [field]: value });
   }
 
-  const submit = async (event) => {
+  const submit = async (ev) => {
     try {
-      event.preventDefault();
+      ev.preventDefault();
       setLoading();
-      await Auth.register(state);
+      const { uid } = userState.firebaseUser!;
+      const userData: UserSignup = { ...state, facebookUid: uid };
+      const user = await UserService.register(userData, cancelToken);
+      setUser(user);
     } catch(err) {
-      // Show some error
-      console.error(err);
+      const error: ErrorResponse = err;
+      if (!error.response || error.response.status !== 404) { console.error(err); }
     }
     setLoaded();
   }
-
-  if (userState.auth) { return <Redirect to="/"></Redirect> };
 
   return (
     <Container fluid className="d-flex justify-content-center">
@@ -73,7 +73,7 @@ export default function Signup() {
             label="first name"
             margin="normal"
             autoComplete="fname"
-            value={firstName}
+            value={state.firstName}
             onChange={(event) => handleChange('firstName', event)}
             fullWidth
           />
@@ -83,19 +83,8 @@ export default function Signup() {
             label="last name"
             margin="normal"
             autoComplete="lname"
-            value={lastName}
+            value={state.lastName}
             onChange={(event) => handleChange('lastName', event)}
-            fullWidth
-          />
-          <TextField
-            required
-            id="birthDay"
-            label="birth day"
-            margin="normal"
-            autoComplete="bday"
-            type="date"
-            value={birthDay}
-            onChange={(event) => handleChange('birthDay', event)}
             fullWidth
           />
           <TextField
@@ -104,7 +93,7 @@ export default function Signup() {
             label="username"
             margin="normal"
             autoComplete="username"
-            value={username}
+            value={state.username}
             onChange={(event) => handleChange('username', event)}
             fullWidth
           />
@@ -115,7 +104,7 @@ export default function Signup() {
             margin="normal"
             type="password"
             autoComplete="password"
-            value={password}
+            value={state.password}
             onChange={(event) => handleChange('password', event)}
             fullWidth
           />

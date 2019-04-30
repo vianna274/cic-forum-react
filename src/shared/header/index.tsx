@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import Nav from '../../shared/nav';
 import { Container } from 'react-bootstrap';
-import { ApplicationContext } from '../../core/application/application.state';
+import { ApplicationContext } from '../../core/application/reducer';
 import { LinearProgress } from '@material-ui/core';
 import './header.scss';
 

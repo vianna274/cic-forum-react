@@ -3,47 +3,44 @@ import './login.scss';
 import { Button, Paper } from '@material-ui/core';
 import React, { useContext } from 'react';
 import { Col, Container } from 'react-bootstrap';
-import { Redirect } from 'react-router-dom';
 
-import { ApplicationActionType } from '../../core/application/application.models';
-import { ApplicationContext } from '../../core/application/application.state';
-import { UserActionType } from '../../core/user/user.models';
-import { UserContext } from '../../core/user/user.state';
-import { Auth } from '../../core/firebase/auth';
+import { ApplicationActionType } from '../../core/application/models';
+import { ApplicationContext } from '../../core/application/reducer';
+import { FirebaseAuth } from '../../core/firebase/handler';
+import { UserActionType } from '../../core/user/models';
+import { UserContext } from '../../core/user/reducer';
 
 export default function Login() {
 
   const { dispatch: appDispatch } = useContext(ApplicationContext);
-  const { state, dispatch: userDispatch } = useContext(UserContext);
+  const { dispatch: userDispatch } = useContext(UserContext);
 
   const setLoaded = () => appDispatch({ type: ApplicationActionType.LOADED });
   const setLoading = () => appDispatch({ type: ApplicationActionType.LOADING });
-  const setUser = (user: firebase.User) => userDispatch({ user, type: UserActionType.SET_USER });
 
-  const authHandler = (authData: firebase.auth.UserCredential) => {
-    authData && authData.user ? setUser(authData.user) : console.error('Error authenticating');
-  };
+  const setInProgress = (inProgress: boolean) => userDispatch({ inProgress, type: UserActionType.SET_IN_PROGRESS });
 
   const facebookAuth = async (ev) => {
     try {
       setLoading();
+      setInProgress(true);
       ev.preventDefault();
 
-      const facebookAuthProvider = Auth.facebookOAuth();
-      const auth = Auth.getAuth();
+      const facebookAuthProvider = FirebaseAuth.facebookOAuth();
+      const auth = FirebaseAuth.getAuth();
 
-      const authData = auth.currentUser
+      auth.currentUser
         ? await auth.currentUser.linkWithPopup(facebookAuthProvider)
         : await auth.signInWithPopup(facebookAuthProvider);
-      authHandler(authData);
 
     } catch (err) {
       console.error(err);
+      FirebaseAuth.getAuth().signOut();
+    } finally {
+      setInProgress(false);
+      setLoaded();
     }
-    setLoaded();
   };
-
-  if (state.user) { return <Redirect to="/"></Redirect> };
 
   return (
     <Container

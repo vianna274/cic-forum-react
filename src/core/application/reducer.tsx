@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react';
-import { ApplicationState, ApplicationAction, ApplicationActionType } from './application.models';
+import { ApplicationState, ApplicationAction, ApplicationActionType } from './models';
 import { ContextProps } from '../models';
 
 const applicationDispatcher = (state: ApplicationState, action: ApplicationAction) => {

@@ -2,7 +2,7 @@ import { Button, Paper } from '@material-ui/core';
 import React, { useContext } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { UserContext } from '../../core/user/user.state';
+import { UserContext } from '../../core/user/reducer';
 
 export default function Home() {
 
@@ -26,14 +26,7 @@ export default function Home() {
         <Link to="login">
           <Button
             fullWidth
-            color="primary">Sign In</Button>
-        </Link>
-      </Col>
-      <Col>
-        <Link to="signup">
-          <Button
-            fullWidth
-            color="secondary">Sign Up</Button>
+            color="primary">Sign in with a social media</Button>
         </Link>
       </Col>
     </Row>
@@ -51,7 +44,7 @@ export default function Home() {
               </p>
             </Col>
           </Row>
-          { state.auth 
+          { state.user 
             ? renderInButtons()
             : renderOutButtons() }
         </Paper>

@@ -1,17 +1,17 @@
 import React, { createContext, useReducer } from 'react'
-import { ForumState, ForumAction, ForumActionType } from './forum.models';
+import { ForumState, ForumAction, ForumActionType } from './models';
 import { ContextProps } from '../../core/models';
 
 const dispatcher = (state: ForumState, action: ForumAction) => {
   switch (action.type) {
-    case ForumActionType.SET_CATEGORIES:
-      return { ...state, categories: action.categories };  
+    case ForumActionType.SET_SEMESTERS:
+      return { ...state, semesters: action.semesters };  
     default:
       return state;
   }
 }
 
-const initialContext: ForumState = { categories: []};
+const initialContext: ForumState = { semesters: []};
 
 export const ForumContext = createContext((initialContext as unknown) as ContextProps<ForumState>);
 

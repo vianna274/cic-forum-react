@@ -4,8 +4,8 @@ import { MenuItem, Button } from '@material-ui/core';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Auth } from '../../core/firebase/auth';
-import { UserContext } from '../../core/user/user.state';
+import { FirebaseAuth } from '../../core/firebase/handler';
+import { UserContext } from '../../core/user/reducer';
 import Sidebar from 'react-sidebar';
 
 export default function Nav() {
@@ -15,12 +15,12 @@ export default function Nav() {
 
   const renderLoginNav = () => (
     <div className="d-flex justify-content-center flex-column px-2">
-      <img className="profile-pic mt-5 mb-3" src={state.user.photoURL || ''} alt="Profile"/>
-      <p className="name"> {state.user.displayName} </p>
+      <img className="profile-pic mt-5 mb-3" src={state.firebaseUser!.photoURL || ''} alt="Profile"/>
+      <p className="name"> {state.firebaseUser!.displayName} </p>
       <Link to="/">
         <MenuItem onClick={() => setOpen(false)}>Home</MenuItem>
       </Link>
-      <MenuItem onClick={() => Auth.getAuth().signOut() && setOpen(false)}>Logout</MenuItem>
+      <MenuItem onClick={() => FirebaseAuth.getAuth().signOut() && setOpen(false)}>Logout</MenuItem>
     </div>
   );
 
@@ -32,9 +32,6 @@ export default function Nav() {
       <Link to="/login" >
         <MenuItem onClick={() => setOpen(false)}>Sign in</MenuItem>
       </Link>
-      <Link to="/signup" >
-        <MenuItem onClick={() => setOpen(false)}>Sign Up</MenuItem>
-      </Link>
     </div>
   );
 
@@ -42,7 +39,7 @@ export default function Nav() {
     <Sidebar
       sidebarClassName="custom-sidebar-class"
       sidebar={<div>
-        {state.auth
+        {state.user
           ? renderLoginNav()
           : renderLogoutNav()
         }

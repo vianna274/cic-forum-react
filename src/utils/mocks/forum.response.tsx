@@ -1,7 +1,8 @@
-import { ForumPost, ForumCategory } from "../../domain/forum/forum.models";
+import { ForumPost, ForumSemester, ForumCourse } from "../../domain/forum/models";
 
 export const postsMock: ForumPost[] = [
   {
+    id: '231',
     title: 'Mock1',
     description: 'Desc 1',
     content: 'Content mockado 1',
@@ -14,6 +15,7 @@ export const postsMock: ForumPost[] = [
     }
   },
   {
+    id: '232',
     title: 'Mock2',
     description: 'Desc 2',
     content: 'Content mockado 2',
@@ -27,10 +29,19 @@ export const postsMock: ForumPost[] = [
   }
 ]
 
-export const categoriesMock: ForumCategory[] = [
+export const coursesMock: ForumCourse[] = [
   {
-    title: 'Primeiro Semestre',
-    description: 'Posts sobre as cadeiras do primeiro semestre',
+    id: '11',
+    title: 'Sei la',
+    description:  'duashdsia',
     posts: postsMock
+  }
+];
+
+export const semestersMock: ForumSemester[] = [
+  {
+    id: '233',
+    title: 'Primeiro Semestre',
+    courses: coursesMock
   }
 ];
