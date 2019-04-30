@@ -5,7 +5,7 @@ import { userMock } from '../../utils/mocks/user.response';
 
 const localApi = process.env.REACT_APP_LOCAL_API;
 const mock = process.env.REACT_APP_USER_MOCK;
-console.log(process.env.REACT_APP_USER_MOCK);
+
 export const UserService = !mock 
 ? {
   getCancelToken: () => axios.CancelToken.source(),
