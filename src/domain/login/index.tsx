@@ -8,6 +8,7 @@ import { ApplicationContext } from '../../core/application/reducer';
 import { FirebaseAuth } from '../../core/firebase/handler';
 import { UserActionType } from '../../core/user/models';
 import { UserContext } from '../../core/user/reducer';
+import { toast } from 'react-toastify';
 
 export default function Login() {
 
@@ -17,7 +18,8 @@ export default function Login() {
   const setLoaded = () => appDispatch({ type: ApplicationActionType.LOADED });
   const setLoading = () => appDispatch({ type: ApplicationActionType.LOADING });
 
-  const setInProgress = (inProgress: boolean) => userDispatch({ inProgress, type: UserActionType.SET_IN_PROGRESS });
+  const setInProgress = (inProgress: boolean) =>
+    userDispatch({ inProgress, type: UserActionType.SET_IN_PROGRESS });
 
   const facebookAuth = async (ev) => {
     try {
@@ -35,6 +37,7 @@ export default function Login() {
     } catch (err) {
       console.error(err);
       FirebaseAuth.getAuth().signOut();
+      toast.error("There's something wrong with your account, contact any admin to solve it");
     } finally {
       setInProgress(false);
       setLoaded();
@@ -53,7 +56,7 @@ export default function Login() {
             color="primary"
             id="sign-in-button"
             className="sign-in-button mt-5"
-            onClick={(ev) => facebookAuth(ev)}
+            onClick={ev => facebookAuth(ev)}
           >
             Sign in with Facebook
           </Button>

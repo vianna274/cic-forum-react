@@ -35,7 +35,7 @@ export default function Signup() {
     firstName: '',
     lastName: '',
     username: '',
-    password: ''
+    password: '',
   } as SignupState);
 
   // eslint-disable-next-line
@@ -45,7 +45,7 @@ export default function Signup() {
     const inputEvent = event as React.ChangeEvent<HTMLInputElement>;
     const { value } = inputEvent.target;
     setState({ ...state, [field]: value });
-  }
+  };
 
   const submit = async (ev) => {
     try {
@@ -55,18 +55,18 @@ export default function Signup() {
       const userData: UserSignup = { ...state, facebookUid: uid };
       const user = await UserService.register(userData, cancelToken);
       setUser(user);
-    } catch(err) {
+    } catch (err) {
       const error: ErrorResponse = err;
       if (!error.response || error.response.status !== 404) { console.error(err); }
     }
     setLoaded();
-  }
+  };
 
   return (
     <Container fluid className="d-flex justify-content-center">
       <Paper className="d-flex align-items-center flex-column col-10 col-sm-8 col-md-6">
         <h2 className="">Preencha seus dados para registrar-se</h2>
-        <form onSubmit={(e) => submit(e)}>
+        <form onSubmit={event => submit(event)}>
           <TextField
             required
             id="firstName"
@@ -74,7 +74,7 @@ export default function Signup() {
             margin="normal"
             autoComplete="fname"
             value={state.firstName}
-            onChange={(event) => handleChange('firstName', event)}
+            onChange={event => handleChange('firstName', event)}
             fullWidth
           />
           <TextField
@@ -84,7 +84,7 @@ export default function Signup() {
             margin="normal"
             autoComplete="lname"
             value={state.lastName}
-            onChange={(event) => handleChange('lastName', event)}
+            onChange={event => handleChange('lastName', event)}
             fullWidth
           />
           <TextField
@@ -94,7 +94,7 @@ export default function Signup() {
             margin="normal"
             autoComplete="username"
             value={state.username}
-            onChange={(event) => handleChange('username', event)}
+            onChange={event => handleChange('username', event)}
             fullWidth
           />
           <TextField
@@ -105,7 +105,7 @@ export default function Signup() {
             type="password"
             autoComplete="password"
             value={state.password}
-            onChange={(event) => handleChange('password', event)}
+            onChange={event => handleChange('password', event)}
             fullWidth
           />
           <Button

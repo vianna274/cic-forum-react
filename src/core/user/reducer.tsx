@@ -18,11 +18,10 @@ const userDispatcher = (state: UserState, action: UserAction) => {
   }
 };
 
-
 export const initialContext: UserState = {
   firebaseUser: null as unknown as firebase.User,
   user: null as unknown as User,
-  inProgress: true
+  inProgress: true,
 };
 
 export const UserContext = createContext((initialContext as unknown) as ContextProps<UserState>);

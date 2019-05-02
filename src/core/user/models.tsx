@@ -7,7 +7,7 @@ export interface User {
 
 export interface UserState {
   firebaseUser?: firebase.User;
-  user?: User
+  user?: User;
   inProgress: boolean;
 }
 
@@ -15,7 +15,7 @@ export enum UserActionType {
   SET_USER = 'set_user',
   SET_FIREBASE_USER = 'set_firebase_user',
   RESET = 'reset',
-  SET_IN_PROGRESS = 'set_in_progress'
+  SET_IN_PROGRESS = 'set_in_progress',
 }
 
 export interface UserAction {

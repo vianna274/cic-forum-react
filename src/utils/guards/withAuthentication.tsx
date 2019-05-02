@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 import { UserContext } from '../../core/user/reducer';
 
-export const withAuthentication = BaseComponent => props => {
+export const withAuthentication = BaseComponent => (props) => {
 
   const { state: userState } = useContext(UserContext);
 
@@ -13,4 +13,4 @@ export const withAuthentication = BaseComponent => props => {
     ? <BaseComponent {...props} />
     : <></>
   );
-}
+};

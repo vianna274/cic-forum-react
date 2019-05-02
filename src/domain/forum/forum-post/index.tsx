@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import { ForumService } from '../service';
 import { ForumPostData } from '../models';
 import { Paper } from '@material-ui/core';
+import { toast } from 'react-toastify';
+import { ERROR_MESSAGES } from '../../../utils/error/constants';
 
 export default function ForumPost(props) {
   const { id } = props.match.params;
@@ -15,8 +17,9 @@ export default function ForumPost(props) {
         setPost(post);
       } catch (err) {
         console.error(err);
+        toast.error(ERROR_MESSAGES.POST_FETCH);
       }
-    }
+    };
 
     fetchPost();
     // eslint-disable-next-line
@@ -33,5 +36,4 @@ export default function ForumPost(props) {
       </Paper>
     </div>
   );
-
 }

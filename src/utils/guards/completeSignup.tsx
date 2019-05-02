@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 import { UserContext } from '../../core/user/reducer';
 
-export const completeSignup = BaseComponent => props => {
+export const completeSignup = BaseComponent => (props) => {
 
   const { state } = useContext(UserContext);
 
@@ -13,5 +13,5 @@ export const completeSignup = BaseComponent => props => {
 
   if (state.inProgress) { return <h1> Loading </h1>; }
 
-  return <BaseComponent {...props} />
-}
+  return <BaseComponent {...props} />;
+};

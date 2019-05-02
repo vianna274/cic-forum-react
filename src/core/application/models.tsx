@@ -4,7 +4,7 @@ export interface ApplicationState {
 
 export enum ApplicationActionType {
   LOADING = 'loading',
-  LOADED = 'loaded'
+  LOADED = 'loaded',
 }
 
 export interface ApplicationAction {

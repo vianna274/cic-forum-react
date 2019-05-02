@@ -13,5 +13,7 @@
     "import-name": false,
     "variable-name": false,
     "function-name": false,
+    "max-line-length": [ true, 140 ],
+    "align": [true, "statements", "parameters"]
   }
 }

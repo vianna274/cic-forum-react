@@ -3,7 +3,7 @@ import { ApplicationState, ApplicationAction, ApplicationActionType } from './mo
 import { ContextProps } from '../models';
 
 const applicationDispatcher = (state: ApplicationState, action: ApplicationAction) => {
-  switch(action.type) {
+  switch (action.type) {
     case ApplicationActionType.LOADED:
       return { ...state, loading: false };
     case ApplicationActionType.LOADING:
@@ -11,11 +11,12 @@ const applicationDispatcher = (state: ApplicationState, action: ApplicationActio
     default:
       return state;
   }
-}
+};
 
 export const initialContext: ApplicationState = { loading: false };
 
-export const ApplicationContext = createContext((initialContext as unknown) as ContextProps<ApplicationState>);
+export const ApplicationContext =
+  createContext(initialContext as unknown as ContextProps<ApplicationState>);
 
 export default function ApplicationProvider({ children }) {
   const [state, dispatch] = useReducer(applicationDispatcher, initialContext);

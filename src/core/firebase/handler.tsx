@@ -8,5 +8,5 @@ export const FirebaseAuth = {
 
   facebookOAuth: () => {
     return new firebase.auth.FacebookAuthProvider();
-  }
-}
+  },
+};

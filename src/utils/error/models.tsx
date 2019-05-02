@@ -15,5 +15,5 @@ export interface ErrorResponse {
 export enum ErrorType {
   UNKNOWN,
   CANCELLED,
-  FACE_NOT_FOUND
+  FACE_NOT_FOUND,
 }

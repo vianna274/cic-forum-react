@@ -1,5 +1,8 @@
+import 'react-toastify/dist/ReactToastify.css';
+
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import Forum from '../../domain/forum';
 import Home from '../../domain/home';
@@ -14,7 +17,6 @@ import Auth from '../auth';
 import Header from '../header';
 
 export default function Router() {
-
   return (
     <BrowserRouter>
       <Header />
@@ -26,6 +28,7 @@ export default function Router() {
         <Route path="/profile" component={withAuthentication(Profile)} />
         <Route component={waitAuthentication(Home)} />
       </Switch>
+      <ToastContainer />
       <Auth />
     </BrowserRouter>
   );

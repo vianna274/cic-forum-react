@@ -15,7 +15,10 @@ export default function Nav() {
 
   const renderLoginNav = () => (
     <div className="d-flex justify-content-center flex-column px-2">
-      <img className="profile-pic mt-5 mb-3" src={state.firebaseUser!.photoURL || ''} alt="Profile" />
+      <img
+        className="profile-pic mt-5 mb-3"
+        src={state.firebaseUser!.photoURL || ''}
+        alt="Profile" />
       <p className="name"> {state.firebaseUser!.displayName} </p>
       <Link to="/">
         <MenuItem onClick={() => setOpen(false)}>Home</MenuItem>
@@ -45,9 +48,9 @@ export default function Nav() {
     <Sidebar
       sidebarClassName="custom-sidebar-class"
       sidebar={<div>
-        <IconButton 
+        <IconButton
           color="primary"
-          onClick={() => setOpen(!open)}>      
+          onClick={() => setOpen(!open)}>
           <Icon color="primary">menu_circle</Icon>
         </IconButton>
         {state.user
@@ -57,10 +60,10 @@ export default function Nav() {
       </div>}
       open={open}
       onSetOpen={setOpen}>
-      <IconButton 
+      <IconButton
         color="primary"
         className="menu-button"
-        onClick={() => setOpen(!open)}>      
+        onClick={() => setOpen(!open)}>
         <Icon color="primary">menu_circle</Icon>
       </IconButton>
     </Sidebar>

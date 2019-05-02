@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { Button, Paper, TextField } from '@material-ui/core';
+import React, { useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+
+import { ApplicationActionType } from '../../core/application/models';
+import { ApplicationContext } from '../../core/application/reducer';
 import { User, UserActionType } from '../../core/user/models';
-import { TextField, Paper, Button } from '@material-ui/core';
+import { UserContext } from '../../core/user/reducer';
+import { UserService } from '../../core/user/service';
 import { ErrorHandler } from '../../utils/error/handler';
 import { ErrorType } from '../../utils/error/models';
-import { UserService } from '../../core/user/service';
-import { UserContext } from '../../core/user/reducer';
-import { ApplicationContext } from '../../core/application/reducer';
-import { ApplicationActionType } from '../../core/application/models';
+import { ERROR_MESSAGES } from '../../utils/error/constants';
 
 export default function Profile() {
 
@@ -34,51 +37,54 @@ export default function Profile() {
 
       setUser(response);
       setFormState(response);
+      toast.success('The profile was updated :D', { position: toast.POSITION.BOTTOM_LEFT });
     } catch (err) {
       const type = ErrorHandler.getType(err);
 
       if (type === ErrorType.CANCELLED) { return; }
       if (type === ErrorType.UNKNOWN) { return console.error(err); }
+
+      toast.error(ERROR_MESSAGES.GENERIC, { position: toast.POSITION.BOTTOM_LEFT });
     } finally {
       setLoaded();
     }
-  }
+  };
 
   const reset = () => {
     setFormState(user!);
-  }
+  };
 
   const handleChange = (field: keyof User, event: React.ChangeEvent) => {
     const inputEvent = event as React.ChangeEvent<HTMLInputElement>;
     const { value } = inputEvent.target;
     setFormState({ ...formState, [field]: value });
-  }
+  };
 
   return (
     <div className="container-fluid d-flex justify-content-center">
       <Paper className="d-flex justify-content-center flex-column mt-5 col-10 col-sm-8">
         <form
           className="d-flex flex-column align-items-center px-3"
-          onSubmit={(ev) => submit(ev)}>
+          onSubmit={ev => submit(ev)}>
           <h1 className="pt-3">My profile</h1>
           <TextField
             className="my-2"
             label="First name"
             value={formState.firstName}
-            onChange={(ev) => handleChange('firstName', ev)}
+            onChange={ev => handleChange('firstName', ev)}
             fullWidth>
           </TextField>
           <TextField
             className="my-2"
             label="Last name"
-            onChange={(ev) => handleChange('lastName', ev)}
+            onChange={ev => handleChange('lastName', ev)}
             value={formState.lastName}
             fullWidth>
           </TextField>
           <TextField
             className="my-2"
             label="Username"
-            onChange={(ev) => handleChange('username', ev)}
+            onChange={ev => handleChange('username', ev)}
             value={formState.username}
             fullWidth>
           </TextField>

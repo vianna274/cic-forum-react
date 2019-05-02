@@ -38,10 +38,14 @@ export default function Home() {
           <div className="row">
             <div className="col d-flex justify-content-center align-items-center flex-column">
               {state.user
-                ? <p className="px-3"> Seja bem vindo novamente <b>{state.user.firstName} {state.user.lastName}</b></p>
+                ? <p className="px-3">
+                  Seja bem vindo novamente <b>{state.user.firstName} {state.user.lastName}</b>
+                </p>
                 : <p className="px-3">
-                  CiC forum é um website aonde você encontrará materiais de todos os semestres e cadeiras
-                  do curso de Ciência da Computação da UFRGS (Universidade Federal do Rio Grande do Sul)
+                  CiC forum é um website aonde você encontrará
+                  materiais de todos os semestres e cadeiras
+                  do curso de Ciência da Computação da UFRGS
+                  (Universidade Federal do Rio Grande do Sul)
                   </p>}
             </div>
           </div>

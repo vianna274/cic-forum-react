@@ -7,7 +7,6 @@ import ForumSemesters from './forum-semesters';
 import ForumHeader from './forum-header';
 import ForumPost from './forum-post';
 import ForumProvider from './reducer';
-import { waitAuthentication } from '../../utils/guards/waitAuthentication';
 
 export default function Forum(props) {
   return (
@@ -17,8 +16,12 @@ export default function Forum(props) {
           <ForumHeader></ForumHeader>
         </div>
         <Switch>
-          <Route path={`${props.match.path}/post/:id`} component={withAuthentication(ForumPost)} />
-          <Route path={`${props.match.path}/`} exact component={withAuthentication(ForumSemesters)} />
+          <Route
+            path={`${props.match.path}/post/:id`}
+            component={withAuthentication(ForumPost)} />
+          <Route
+            path={`${props.match.path}/`} exact
+            component={withAuthentication(ForumSemesters)} />
           <Route component={withAuthentication(ForumSemesters)} />
         </Switch>
       </ForumProvider>

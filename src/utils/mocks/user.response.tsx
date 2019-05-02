@@ -1,8 +1,8 @@
-import { User } from "../../core/user/models";
+import { User } from '../../core/user/models';
 
 export const userMock: User = {
-  firstName: "Leonardo",
-  lastName: "Gostoso",
-  username: "leozinho",
-  id: "999"
+  firstName: 'Leonardo',
+  lastName: 'Gostoso',
+  username: 'leozinho',
+  id: '999',
 };

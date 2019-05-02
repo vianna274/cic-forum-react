@@ -1,5 +1,5 @@
-import { sleep } from "../../utils/sleep";
-import { semestersMock, postMock } from "../../utils/mocks/forum.response";
+import { sleep } from '../../utils/sleep';
+import { semestersMock, postMock } from '../../utils/mocks/forum.response';
 
 export const ForumService = {
   getSemesters: async () => {
@@ -15,8 +15,8 @@ export const ForumService = {
     try {
       sleep(1000);
       return postMock;
-    } catch(err) {
+    } catch (err) {
       throw(err);
     }
-  }
-}
+  },
+};

@@ -1,4 +1,4 @@
-import { User } from "../../core/user/models";
+import { User } from '../../core/user/models';
 
 export interface ForumPostData {
   title: string;
@@ -27,7 +27,7 @@ export interface ForumState {
 }
 
 export enum ForumActionType {
-  SET_SEMESTERS = 'set_semesters'
+  SET_SEMESTERS = 'set_semesters',
 }
 
 export interface ForumAction {

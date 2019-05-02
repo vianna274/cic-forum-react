@@ -7,7 +7,7 @@ import './style.scss';
 export default function Header() {
 
   const { state } = useContext(ApplicationContext);
-  
+
   return (
     <div className="root-header container-fluid px-0 mb-3">
       <LinearProgress className={ state.loading ? '-opacity' : '-no-opacity'}></LinearProgress>
