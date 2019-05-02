@@ -6,7 +6,7 @@ import { UserContext } from '../../core/user/reducer';
 export const withoutAuthentication = BaseComponent => props => {
   const { state } = useContext(UserContext);
 
-  if (state.user) { return <Redirect to="/"></Redirect>; }
+  if (!state.inProgress && state.user) { return <Redirect to="/"></Redirect>; }
 
   return <BaseComponent {...props} />;
 }

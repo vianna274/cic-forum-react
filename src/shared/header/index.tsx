@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
 import Nav from '../../shared/nav';
-import { Container } from 'react-bootstrap';
 import { ApplicationContext } from '../../core/application/reducer';
 import { LinearProgress } from '@material-ui/core';
-import './header.scss';
+import './style.scss';
 
 export default function Header() {
 
   const { state } = useContext(ApplicationContext);
   
   return (
-    <Container fluid className="px-0">
+    <div className="root-header container-fluid px-0 mb-3">
       <LinearProgress className={ state.loading ? '-opacity' : '-no-opacity'}></LinearProgress>
+      <h1 className="text-center">CiC Forum</h1>
       <Nav></Nav>
-    </Container>
+    </div>
   );
 }

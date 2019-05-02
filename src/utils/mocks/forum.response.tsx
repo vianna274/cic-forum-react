@@ -1,6 +1,19 @@
-import { ForumPost, ForumSemester, ForumCourse } from "../../domain/forum/models";
+import { ForumPostData, ForumSemester, ForumCourse } from "../../domain/forum/models";
 
-export const postsMock: ForumPost[] = [
+export const postMock: ForumPostData = {
+  id: '231',
+  title: 'Mock1',
+  description: 'Desc 1',
+  content: 'Content mockado 1',
+  author: { 
+    username: 'teste', 
+    firstName: 'teste', 
+    lastName: 'teste', 
+    id: '1'
+  }
+};
+
+export const postsMock: ForumPostData[] = [
   {
     id: '231',
     title: 'Mock1',
@@ -38,8 +51,21 @@ export const coursesMock: ForumCourse[] = [
 
 export const semestersMock: ForumSemester[] = [
   {
-    id: '233',
+    id: '1',
     title: 'Primeiro Semestre',
-    courses: coursesMock
+    courses: coursesMock,
+    imageUrl: "/assets/img/easy.jpg"
+  },
+  {
+    id: '2',
+    title: 'Segundo Semestre',
+    courses: coursesMock,
+    imageUrl: "/assets/img/medium.jpg"
+  },
+  {
+    id: '3',
+    title: 'Terceiro Semestre',
+    courses: coursesMock,
+    imageUrl: "/assets/img/hard.jpg"
   }
 ];

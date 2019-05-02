@@ -1,6 +1,6 @@
 import { User } from "../../core/user/models";
 
-export interface ForumPost {
+export interface ForumPostData {
   title: string;
   description: string;
   content: string;
@@ -12,13 +12,14 @@ export interface ForumCourse {
   title: string;
   id: string;
   description: string;
-  posts: ForumPost[];
+  posts: ForumPostData[];
 }
 
 export interface ForumSemester {
   title: string;
   id: string;
   courses: ForumCourse[];
+  imageUrl: string;
 }
 
 export interface ForumState {

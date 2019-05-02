@@ -21,11 +21,14 @@ function Auth({history}) {
   const setLoaded = () => appDispatch({ type: ApplicationActionType.LOADED });
 
   const setUser = (user: User) => userDispatch({ user, type: UserActionType.SET_USER });
+  const setInProgress = (inProgress: boolean) => userDispatch({ inProgress, type: UserActionType.SET_IN_PROGRESS });
   const setFirebaseUser = (firebaseUser: firebase.User) => userDispatch({ firebaseUser, type: UserActionType.SET_FIREBASE_USER });
   const resetUser = () => userDispatch({ type: UserActionType.RESET })
 
   useEffect(() => {
     setLoading();
+    setInProgress(true);
+
     FirebaseAuth.getAuth().onAuthStateChanged(async (user: firebase.User | null) => {
       try {
         if (!user) { return resetUser(); }
@@ -44,6 +47,7 @@ function Auth({history}) {
         console.error('Error', err);
       } finally {
         setLoaded();
+        setInProgress(false);
       }
     });
 

@@ -11,6 +11,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-sidebar": "^3.0.0",
     "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
     "firebase": "^5.10.1",
     "i": "^0.3.6",
     "node-sass": "^4.11.0",
@@ -20,6 +21,7 @@
     "react-dom": "^16.8.5",
     "react-router-dom": "^5.0.0",
     "react-scripts": "^3.0.0",
+    "react-select": "^2.4.3",
     "react-sidebar": "^3.0.2",
     "tslint-config-airbnb": "^5.11.1",
     "typescript": "^3.4.5"

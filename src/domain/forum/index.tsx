@@ -1,41 +1,26 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import { Route, Switch } from 'react-router-dom';
 
+import { withAuthentication } from '../../utils/guards/withAuthentication';
+import ForumSemesters from './forum-semesters';
+import ForumHeader from './forum-header';
+import ForumPost from './forum-post';
 import ForumProvider from './reducer';
+import { waitAuthentication } from '../../utils/guards/waitAuthentication';
 
-export default function Forum() {
-
-  // const { dispatch: appDispatch } = useContext(ApplicationContext);
-  // const { dispatch: forumDispatch } = useContext(ForumContext);
-
-  // const setLoaded = () => appDispatch({ type: ApplicationActionType.LOADED });
-  // const setLoading = () => appDispatch({ type: ApplicationActionType.LOADING });
-  // const setSemesters = (semesters: ForumSemester[]) => forumDispatch({ semesters, type: ForumActionType.SET_SEMESTERS });
-
-  // useEffect(() => { 
-  //   const fetchForumData = async () => {
-  //     try {
-  //       setLoading();
-  //       const response = await ForumService.getSemesters();
-  //       setSemesters(response);
-  //       setLoaded();
-  //       return response;
-  //     } catch (err) {
-  //       // TODO: Mostrar modal de erro
-  //       console.error(err);
-  //     }
-  //     setLoaded();
-  //   }
-  //   fetchForumData();
-  //   // eslint-disable-next-line
-  // }, []);
-
+export default function Forum(props) {
   return (
     <Container>
       <ForumProvider>
-        <h1>Forum Header</h1>
-        <h1>Forum Categories</h1>
-        <h1>Forum News</h1>
+        <div className="py-5">
+          <ForumHeader></ForumHeader>
+        </div>
+        <Switch>
+          <Route path={`${props.match.path}/post/:id`} component={withAuthentication(ForumPost)} />
+          <Route path={`${props.match.path}/`} exact component={withAuthentication(ForumSemesters)} />
+          <Route component={withAuthentication(ForumSemesters)} />
+        </Switch>
       </ForumProvider>
     </Container>
   );

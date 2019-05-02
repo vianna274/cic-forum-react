@@ -23,6 +23,9 @@ export default function Nav() {
       <Link to="profile">
         <MenuItem onClick={() => setOpen(false)}>Profile</MenuItem>
       </Link>
+      <Link to="forum">
+        <MenuItem onClick={() => setOpen(false)}>Forum</MenuItem>
+      </Link>
       <MenuItem onClick={() => FirebaseAuth.getAuth().signOut() && setOpen(false)}>Logout</MenuItem>
     </div>
   );
@@ -43,10 +46,10 @@ export default function Nav() {
       sidebarClassName="custom-sidebar-class"
       sidebar={<div>
         <IconButton 
-        color="primary"
-        onClick={() => setOpen(false)}>      
-        <Icon color="primary">menu_circle</Icon>
-      </IconButton>
+          color="primary"
+          onClick={() => setOpen(!open)}>      
+          <Icon color="primary">menu_circle</Icon>
+        </IconButton>
         {state.user
           ? renderLoginNav()
           : renderLogoutNav()
@@ -56,7 +59,8 @@ export default function Nav() {
       onSetOpen={setOpen}>
       <IconButton 
         color="primary"
-        onClick={() => setOpen(true)}>      
+        className="menu-button"
+        onClick={() => setOpen(!open)}>      
         <Icon color="primary">menu_circle</Icon>
       </IconButton>
     </Sidebar>
