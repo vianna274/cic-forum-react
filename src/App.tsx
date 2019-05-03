@@ -1,7 +1,7 @@
 import React from 'react';
 
 import UserProvider from './core/user/reducer';
-import Router from './shared/router';
+import Router from './domain/router';
 import ApplicationProvider from './core/application/reducer';
 
 export default function App() {

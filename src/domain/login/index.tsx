@@ -1,4 +1,4 @@
-import './login.scss';
+import './style.scss';
 
 import { Button, Paper } from '@material-ui/core';
 import React, { useContext } from 'react';
@@ -46,22 +46,20 @@ export default function Login() {
 
   return (
     <div className="container-fluid d-flex justify-content-center">
-      <div className="input-group px-0 col-6">
-        <Paper
-          className="paper">
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            id="sign-in-button"
-            className="sign-in-button mt-5"
-            onClick={ev => facebookAuth(ev)}
-          >
-            Sign in with Facebook
+      <Paper
+        className="paper input-group px-0 col-3 col-sm-4 col-md-6 ">
+        <p className="description mt-4">Entre com a opção abaixo :)</p>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          id="sign-in-button"
+          className="sign-in-button mt-5 mb-3"
+          onClick={ev => facebookAuth(ev)}
+        >
+          Sign in with Facebook
           </Button>
-        </Paper>
-      </div>
+      </Paper>
     </div>
   );
 }

@@ -4,17 +4,19 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-import Forum from '../../domain/forum';
-import Home from '../../domain/home';
-import Login from '../../domain/login';
-import Profile from '../../domain/profile';
-import Signup from '../../domain/signup';
+import Forum from '../forum';
+import Home from '../home';
+import Login from '../login';
+import Profile from '../profile';
+import Signup from '../signup';
 import { completeSignup } from '../../utils/guards/completeSignup';
 import { waitAuthentication } from '../../utils/guards/waitAuthentication';
 import { withAuthentication } from '../../utils/guards/withAuthentication';
 import { withoutAuthentication } from '../../utils/guards/withoutAuthentication';
-import Auth from '../auth';
-import Header from '../header';
+import Auth from '../../shared/auth';
+import Header from '../../shared/header';
+import FloatButton from '../../shared/float-button';
+import { NormalOptions } from '../../shared/float-button/constants';
 
 export default function Router() {
   return (
@@ -28,6 +30,7 @@ export default function Router() {
         <Route path="/profile" component={withAuthentication(Profile)} />
         <Route component={waitAuthentication(Home)} />
       </Switch>
+      <FloatButton {...NormalOptions}/>
       <ToastContainer />
       <Auth />
     </BrowserRouter>
