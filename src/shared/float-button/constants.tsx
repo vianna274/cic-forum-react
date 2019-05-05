@@ -7,19 +7,19 @@ export const NormalOptions = {
   },
   options: [
     {
-      url: 'profile',
+      url: '/profile',
       icon: 'person',
-      color: 'secondary'
-    },
-    {
-      url: 'forum',
-      icon: 'forum',
       color: 'secondary'
     },
     {
       url: '/',
       icon: 'home',
       color: 'secondary'
-    }
+    },
+    {
+      url: '/forum/create-post',
+      icon: 'library_add',
+      color: 'secondary'
+    },
   ]
 } as FloatButtonProps;

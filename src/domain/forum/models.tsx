@@ -5,7 +5,9 @@ export interface ForumPostData {
   description: string;
   content: string;
   author: User;
-  id: string;
+  id?: string;
+  semesterId: string;
+  courseId: string;
 }
 
 export interface ForumCourse {

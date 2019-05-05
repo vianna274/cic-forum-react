@@ -7,9 +7,10 @@ import { ApplicationContext } from '../../core/application/reducer';
 import { User, UserActionType } from '../../core/user/models';
 import { UserContext } from '../../core/user/reducer';
 import { UserService } from '../../core/user/service';
+import { ERROR_MESSAGES } from '../../utils/error/constants';
 import { ErrorHandler } from '../../utils/error/handler';
 import { ErrorType } from '../../utils/error/models';
-import { ERROR_MESSAGES } from '../../utils/error/constants';
+import { SUCCESS_MESSAGES } from '../../utils/messages.constants';
 
 export default function Profile() {
 
@@ -37,7 +38,7 @@ export default function Profile() {
 
       setUser(response);
       setFormState(response);
-      toast.success('The profile was updated :D', { position: toast.POSITION.BOTTOM_LEFT });
+      toast.success(SUCCESS_MESSAGES.PROFILE_UPDATED, { position: toast.POSITION.BOTTOM_LEFT });
     } catch (err) {
       const type = ErrorHandler.getType(err);
 

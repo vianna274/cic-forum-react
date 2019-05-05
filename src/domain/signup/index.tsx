@@ -70,6 +70,7 @@ export default function Signup() {
           <TextField
             required
             id="firstName"
+            className="my-2"
             label="first name"
             margin="normal"
             autoComplete="fname"
@@ -80,6 +81,7 @@ export default function Signup() {
           <TextField
             required
             id="lastName"
+            className="my-2"
             label="last name"
             margin="normal"
             autoComplete="lname"
@@ -90,6 +92,7 @@ export default function Signup() {
           <TextField
             required
             id="username"
+            className="my-2"
             label="username"
             margin="normal"
             autoComplete="username"
@@ -100,6 +103,7 @@ export default function Signup() {
           <TextField
             required
             id="password"
+            className="my-2"
             label="password"
             margin="normal"
             type="password"

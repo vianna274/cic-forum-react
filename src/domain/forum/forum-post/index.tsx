@@ -4,18 +4,28 @@ import { ForumPostData } from '../models';
 import { Paper } from '@material-ui/core';
 import { toast } from 'react-toastify';
 import { ERROR_MESSAGES } from '../../../utils/error/constants';
+import { ErrorHandler } from '../../../utils/error/handler';
+import { ErrorType } from '../../../utils/error/models';
 
 export default function ForumPost(props) {
   const { id } = props.match.params;
 
   const [post, setPost] = useState({} as ForumPostData);
+  const cancelToken = ForumService.getCancelToken();
+
+  // eslint-disable-next-line
+  useEffect(() => () => cancelToken.cancel(), []);
 
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const post = await ForumService.getPost(id);
+        const post = await ForumService.getPost(id, cancelToken);
         setPost(post);
       } catch (err) {
+        const type = ErrorHandler.getType(err);
+
+        if (type === ErrorType.CANCELLED) { return; }
+
         console.error(err);
         toast.error(ERROR_MESSAGES.POST_FETCH);
       }

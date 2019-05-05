@@ -5,6 +5,8 @@ export const postMock: ForumPostData = {
   title: 'Mock1',
   description: 'Desc 1',
   content: 'Content mockado 1',
+  semesterId: '1',
+  courseId: '2',
   author: {
     username: 'teste',
     firstName: 'teste',
@@ -19,6 +21,8 @@ export const postsMock: ForumPostData[] = [
     title: 'Mock1',
     description: 'Desc 1',
     content: 'Content mockado 1',
+    semesterId: '1',
+    courseId: '2',
     author: {
       username: 'teste',
       firstName: 'teste',
@@ -31,6 +35,8 @@ export const postsMock: ForumPostData[] = [
     title: 'Mock2',
     description: 'Desc 2',
     content: 'Content mockado 2',
+    semesterId: '1',
+    courseId: '2',
     author: {
       username: 'teste11',
       firstName: 'teste',

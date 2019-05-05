@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { postsMock } from '../../../utils/mocks/forum.response';
 
-export default function ForumHeader() {
+export default function ForumSearch() {
 
   const [options, setOptions] = useState();
   const [selectedOption, setSelectedOption] = useState();

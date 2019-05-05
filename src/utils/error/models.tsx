@@ -13,7 +13,8 @@ export interface ErrorResponse {
 }
 
 export enum ErrorType {
-  UNKNOWN,
-  CANCELLED,
-  FACE_NOT_FOUND,
+  UNKNOWN = 'Unknown',
+  CANCELLED = 'Cancelled',
+  FACE_NOT_FOUND = 'Face not found',
+  INVALID_DATA = 'Invalid data',
 }
