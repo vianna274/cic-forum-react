@@ -47,7 +47,7 @@ export default function Login() {
   return (
     <div className="container-fluid d-flex justify-content-center">
       <Paper
-        className="paper input-group px-0 col-3 col-sm-4 col-md-6 ">
+        className="paper input-group px-0 col-10 col-sm-8 col-md-6 ">
         <p className="description mt-4">Entre com a opção abaixo :)</p>
         <Button
           type="submit"

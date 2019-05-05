@@ -5,7 +5,7 @@ import { ToastContainer } from 'react-toastify';
 
 import ApplicationProvider from './core/application/reducer';
 import UserProvider from './core/user/reducer';
-import Router from './domain/router';
+import Router from './router';
 
 export default function App() {
   return (

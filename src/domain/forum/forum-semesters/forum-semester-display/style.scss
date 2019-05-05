@@ -9,7 +9,10 @@
   align-items: center;
   flex-direction: column;
   cursor: pointer;
-  opacity: 0.8;
+
+  @include media-breakpoint-up(md) {
+    opacity: 0.8;
+  }
 
   > .image {
     max-width: 200px;
@@ -25,11 +28,7 @@
     font-weight: 700;
     font-size: 25px;
     padding: 6px;
-    max-width: 80%;
-
-    @include media-breakpoint-down(sm) {
-      max-width: 65%;
-    }
+    max-width: 60%;
 
     @include media-breakpoint-down(xs) {
       max-width: 50%;
@@ -57,7 +56,7 @@
   }
 }
 
-.category:hover {
+.category:hover, .category:active {
   transition: 1s all ease;
   opacity: 1;
 

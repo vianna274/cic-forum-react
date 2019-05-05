@@ -2,7 +2,6 @@ import './signup.scss';
 
 import { Button, Paper, TextField } from '@material-ui/core';
 import React, { useContext, useState, useEffect } from 'react';
-import { Container } from 'react-bootstrap';
 
 import { ApplicationActionType } from '../../core/application/models';
 import { ApplicationContext } from '../../core/application/reducer';
@@ -57,13 +56,14 @@ export default function Signup() {
       setUser(user);
     } catch (err) {
       const error: ErrorResponse = err;
+
       if (!error.response || error.response.status !== 404) { console.error(err); }
     }
     setLoaded();
   };
 
   return (
-    <Container fluid className="d-flex justify-content-center">
+    <div className="container-fluid d-flex justify-content-center">
       <Paper className="d-flex align-items-center flex-column col-10 col-sm-8 col-md-6">
         <h2 className="">Preencha seus dados para registrar-se</h2>
         <form onSubmit={event => submit(event)}>
@@ -122,6 +122,6 @@ export default function Signup() {
         </Button>
         </form>
       </Paper>
-    </Container>
+    </div>
   );
 }

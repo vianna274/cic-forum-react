@@ -10,7 +10,7 @@ export default function Home() {
   const renderInButtons = () => (
     <div className="pt-3 row">
       <div className="col">
-        <Link to="forum">
+        <Link to="/forum">
           <Button
             fullWidth
             color="primary">Forum</Button>

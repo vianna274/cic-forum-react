@@ -1,0 +1,10 @@
+@import '../../../styles/base.scss';
+
+.description {
+  font-size: $x-small;
+}
+
+.content {
+  font-size: $medium;
+  white-space: pre-wrap;
+}

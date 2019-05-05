@@ -1,15 +1,14 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
 
 import ForumProvider from './reducer';
 import ForumRouter from './router';
 
 export default function Forum(props) {
   return (
-    <Container>
+    <div className="container-fluid h-100 px-0">
       <ForumProvider>
         <ForumRouter />
       </ForumProvider>
-    </Container>
+    </div>
   );
 }

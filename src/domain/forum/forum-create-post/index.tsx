@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+import { ApplicationActionType } from '../../../core/application/models';
+import { ApplicationContext } from '../../../core/application/reducer';
 import { UserContext } from '../../../core/user/reducer';
 import { ERROR_MESSAGES } from '../../../utils/error/constants';
 import { ErrorHandler } from '../../../utils/error/handler';
@@ -19,10 +21,14 @@ interface CreatePostState {
 export default function ForumCreatePost() {
 
   const { state: userState } = useContext(UserContext);
+  const { dispatch: appDispatch } = useContext(ApplicationContext);
   const [redirect, setRedirect] = useState('');
   const [formState, setFormState] = useState({
     title: '', description: '', content: ''
   } as CreatePostState);
+
+  const setLoaded = () => appDispatch({ type: ApplicationActionType.LOADED });
+  const setLoading = () => appDispatch({ type: ApplicationActionType.LOADING });
 
   const cancelToken = ForumService.getCancelToken();
 
@@ -38,15 +44,18 @@ export default function ForumCreatePost() {
   const handleSubmit = async (ev) => {
     try {
       ev.preventDefault();
+      setLoading();
       const response = await ForumService.createPost(userState.user, formState, cancelToken);
       toast.success(SUCCESS_MESSAGES.POST_CREATED, { position: toast.POSITION.BOTTOM_LEFT });
-      setRedirect(response.id);
+      setRedirect(`/forum/post/${response.id}`);
     } catch (error) {
       const type = ErrorHandler.getType(error);
 
       if (type === ErrorType.CANCELLED) { return; }
 
       toast.error(ERROR_MESSAGES.POST_CREATE, { position: toast.POSITION.BOTTOM_LEFT });
+    } finally {
+      setLoaded();
     }
   };
 
@@ -54,7 +63,7 @@ export default function ForumCreatePost() {
 
   return (
     <div className="container d-flex justify-content-center">
-      <Paper className="col-6 col-sm-8- col-md-10">
+      <Paper className="col-12 col-sm-8- col-md-6">
         <form className="d-flex flex-column align-items-center"
           onSubmit={ev => handleSubmit(ev)}>
           <TextField

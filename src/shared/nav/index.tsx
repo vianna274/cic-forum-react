@@ -23,10 +23,10 @@ export default function Nav() {
       <Link to="/">
         <MenuItem onClick={() => setOpen(false)}>Home</MenuItem>
       </Link>
-      <Link to="profile">
+      <Link to="/profile">
         <MenuItem onClick={() => setOpen(false)}>Profile</MenuItem>
       </Link>
-      <Link to="forum">
+      <Link to="/forum">
         <MenuItem onClick={() => setOpen(false)}>Forum</MenuItem>
       </Link>
       <MenuItem onClick={() => FirebaseAuth.getAuth().signOut() && setOpen(false)}>Logout</MenuItem>

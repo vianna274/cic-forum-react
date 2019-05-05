@@ -4,7 +4,12 @@ export const postMock: ForumPostData = {
   id: '231',
   title: 'Mock1',
   description: 'Desc 1',
-  content: 'Content mockado 1',
+  content: `Vendo esses livros, em ótimo estado:
+    Cálculo 1 (Anton): R$ 60,00
+    Física 1 (Halliday): R$ 60,00
+    Álgebra Linear (Lay): R$ 30,00
+    Sistemas Operacionais (Carissimi): R$ 50,00
+    Comunicação de Dados (Rochol): R$ 30,00`,
   semesterId: '1',
   courseId: '2',
   author: {
