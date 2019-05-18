@@ -27,7 +27,7 @@ function FloatButton({ main, options, history }: FloatButtonProps) {
   const renderMenuButtons = () => <ul className={`menu-buttons ${open ? '' : '-hidden'}`}>
     {options.map((option, index) => <li key={index}>
       <Fab
-        className="menu-button my-1"
+        className="menu-button my-1 secondary-button"
         color={option.color}
         onClick={() => { history.push(option.url); setOpen(!open); }}>
         <Icon>
@@ -42,7 +42,7 @@ function FloatButton({ main, options, history }: FloatButtonProps) {
       {renderMenuButtons()}
       <Fab
         id="float-button-main"
-        className="mt-1"
+        className="mt-1 main-button"
         color={main.color}
         onClick={() => setOpen(!open)}>
         <Icon className={open ? '-reverse' : '-normal'}>

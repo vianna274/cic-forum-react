@@ -1,20 +1,43 @@
-@import '../../../../styles/base.scss';
+@import "../../../../styles/base.scss";
 
-#course {
-  border: 1px solid $gray;
-  transition: all ease .4s;
-  background: linear-gradient(120deg, $primary, $primary-dark);
-  background-size: 150% 150%;
-
-  &:hover {
-    background-position: -200px;
+.forum-course-display {
+  .course-icon {
+    border-radius: 25%;
+    border: 1px solid $primary-dark;
+    max-height: 70px;
+    img {
+      object-fit: cover;
+    }
   }
 
-  .title {
-    font-size: $large;
-  }
+  #course {
+    border: 1px solid $accent;
+    transition: all ease 0.4s;
+    background: linear-gradient(120deg, $primary, $primary-dark);
+    background-size: 150% 150%;
 
-  .title, .description, .length {
-    color: $primary-light;
+    &:hover {
+      background-position: -100px;
+    }
+
+    .title {
+      font-size: $large;
+
+      @include media-breakpoint-down(sm) {
+        font-size: $medium;
+      }
+    }
+
+    .description {
+      @include media-breakpoint-down(sm) {
+        font-size: $small;
+      }
+    }
+
+    .title,
+    .description,
+    .length {
+      color: $accent;
+    }
   }
 }

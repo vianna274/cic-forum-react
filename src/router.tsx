@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Auth from './shared/auth';
@@ -15,8 +15,11 @@ import Login from './domain/login';
 import Profile from './domain/profile';
 import Signup from './domain/signup';
 import Privacy from './domain/privacy';
+import { UserContext } from './core/user/reducer';
 
 export default function Router() {
+  const { state } = useContext(UserContext);
+
   return (
     <BrowserRouter>
       <Header />
@@ -29,7 +32,7 @@ export default function Router() {
         <Route path="/privacy" component={Privacy} />
         <Route component={waitAuthentication(Home)} />
       </Switch>
-      <FloatButton {...NormalOptions} />
+      {state.user && <FloatButton {...NormalOptions} />}
       <Auth />
     </BrowserRouter>
   );

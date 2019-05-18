@@ -53,7 +53,7 @@ export default function ForumCategory(props) {
         <h1>{category.title}</h1>
       </div>
       {category.courses.map((course, idx) =>
-        <Link to={`/forum/course/${course.id}`} className="row col-12 col-sm-10 col-md-8 col-lg-6 py-2" key={idx}>
+        <Link to={`/forum/course/${course.id}`} className="row col-12 col-sm-10 col-md-8 col-lg-6 py-3" key={idx}>
           <ForumCourseDisplay course={course} />
         </Link>)
       }

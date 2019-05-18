@@ -11,12 +11,20 @@ export interface ForumCourseDisplayProps {
 
 export default function ForumCourseDisplay({ course }: ForumCourseDisplayProps) {
   return (
-    <Button id="course" fullWidth>
-      <div className="d-flex flex-column align-items-center">
-        <h1 className="title">{course.title}</h1>
-        <p className="description">{course.description}</p>
-        <p className="length">Posts: {course.posts.length}</p>
+    <div className="container forum-course-display">
+      <div className="row align-items-center">
+        <div className="col-2 overflow-hidden course-icon px-0">
+          <img className="pr-2" src="/assets/img/fire.jpg" />
+        </div>
+        <div className="col-10">
+          <Button id="course" fullWidth>
+            <div className="d-flex flex-column align-items-center">
+              <h3 className="title">{course.title}</h3>
+              <p className="description">{course.description}</p>
+            </div>
+          </Button>
+        </div>
       </div>
-    </Button>
+    </div>
   );
 }

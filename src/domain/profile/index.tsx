@@ -90,21 +90,23 @@ export default function Profile() {
             fullWidth>
           </TextField>
           <div className="row">
-            <Button
-              className="my-3 mx-2"
-              type="submit"
-              variant="contained"
-              color="primary">
-              Save changes
-            </Button>
-            <Button
-              className="my-3 mx-2"
-              type="button"
-              variant="outlined"
-              color="secondary"
-              onClick={() => reset()}>
-              Reset
-            </Button>
+            <div className="col d-flex justify-content-center">
+              <Button
+                className="my-3 mx-2 main-button"
+                type="submit"
+                variant="contained">
+                Save changes
+              </Button>
+            </div>
+            <div className="col d-flex justify-content-center">
+              <Button
+                className="my-3 mx-2 secondary-button-clear"
+                type="button"
+                variant="outlined"
+                onClick={() => reset()}>
+                Reset
+              </Button>
+            </div>
           </div>
         </form>
       </Paper>

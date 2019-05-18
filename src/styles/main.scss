@@ -5,7 +5,11 @@ body,
 html,
 #root {
   height: 100%;
-  background-color: $white;
+  background-color: $primary-light !important;
+}
+
+a {
+  text-decoration: none !important;
 }
 
 h1,
@@ -36,32 +40,32 @@ strong {
   color: $primary-dark;
 }
 
-.MuiIcon-colorPrimary-29 {
-  color: $primary-dark !important;
+.secondary-button-clear {
+  border: 1px solid lighten($accent, 10%) !important;
+  color: $primary !important;
+
+  span {
+    color: $primary-light;
+  }
+
+  &:hover {
+    background-color: darken($primary, 5%) !important;
+    span {
+      color: $accent;
+    }
+  }
 }
 
-.MuiFab-primary-54 {
-  background-color: $secondary !important;
+.secondary-button {
+  background-color: lighten($accent, 10%) !important;
   color: $white !important;
 
   &:hover {
-    background-color: darken($secondary, 5%) !important;
+    background-color: darken($accent, 5%) !important;
   }
 
   span {
-    color: $white;
-  }
-}
-
-.MuiFab-secondary-55 {
-  background-color: $accent !important;
-
-  &:hover {
-    background-color: darken($accent, 15%) !important;
-  }
-
-  span {
-    color: $white;
+    color: $primary-light;
   }
 }
 
@@ -73,6 +77,6 @@ strong {
   }
 
   &:hover {
-    background-color: darken($accent, 10%) !important
+    background-color: darken($accent, 10%) !important;
   }
 }
