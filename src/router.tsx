@@ -14,6 +14,7 @@ import Home from './domain/home';
 import Login from './domain/login';
 import Profile from './domain/profile';
 import Signup from './domain/signup';
+import Privacy from './domain/privacy';
 
 export default function Router() {
   return (
@@ -25,6 +26,7 @@ export default function Router() {
         <Route path="/signup" component={completeSignup(Signup)} />
         <Route path="/forum" component={withAuthentication(Forum)} />
         <Route path="/profile" component={withAuthentication(Profile)} />
+        <Route path="/privacy" component={Privacy} />
         <Route component={waitAuthentication(Home)} />
       </Switch>
       <FloatButton {...NormalOptions} />
