@@ -8,7 +8,7 @@ import { ApplicationContext } from '../../core/application/reducer';
 import { UserContext } from '../../core/user/reducer';
 import { ErrorResponse } from '../../utils/error/models';
 import { UserSignup, User, UserActionType } from '../../core/user/models';
-import { UserService } from '../../core/user/service';
+import UserService from '../../core/user/service';
 import { REQUEST_CANCELLED } from '../../core/constants';
 
 interface SignupState {

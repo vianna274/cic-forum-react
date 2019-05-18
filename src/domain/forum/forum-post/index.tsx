@@ -20,7 +20,7 @@ export default function ForumPost(props) {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const postResponse = await ForumService.getPost(id, cancelToken);
+        const postResponse = await ForumService.fetchPost(id, cancelToken);
         setPost(postResponse);
       } catch (err) {
         const type = ErrorHandler.getType(err);
@@ -37,7 +37,7 @@ export default function ForumPost(props) {
     // eslint-disable-next-line
   }, []);
 
-  if (!post) return <></>;
+  if (!post) { return <></>; }
 
   return (
     <div className="container-fluid px-2 d-flex justify-content-center">

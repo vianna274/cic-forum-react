@@ -1,0 +1,32 @@
+@import "../../styles/base.scss";
+
+.sidebar {
+  bottom: auto !important;
+  right: auto !important;
+  overflow: auto !important;
+  display: contents;
+
+  .content {
+    overflow-y: auto !important;
+    bottom: auto !important;
+    right: auto !important;
+    margin-top: 3px;
+  }
+  
+  .menu {
+    background-image: linear-gradient(120deg, $primary, $primary-light);
+  }
+}
+
+.profile-pic {
+  border-radius: 50%;
+  align-self: center;
+}
+
+.name {
+  font-weight: 700;
+}
+
+.menu-button {
+  z-index: 1;
+}

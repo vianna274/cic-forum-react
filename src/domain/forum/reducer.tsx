@@ -4,14 +4,14 @@ import { ContextProps } from '../../core/models';
 
 const dispatcher = (state: ForumState, action: ForumAction) => {
   switch (action.type) {
-    case ForumActionType.SET_SEMESTERS:
-      return { ...state, semesters: action.semesters };
+    case ForumActionType.SET_CATEGORIES:
+      return { ...state, categories: action.categories };
     default:
       return state;
   }
 };
 
-const initialContext: ForumState = { semesters: [] };
+const initialContext: ForumState = { categories: [] };
 
 export const ForumContext = createContext((initialContext as unknown) as ContextProps<ForumState>);
 

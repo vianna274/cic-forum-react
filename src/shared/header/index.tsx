@@ -9,9 +9,9 @@ export default function Header() {
   const { state } = useContext(ApplicationContext);
 
   return (
-    <div className="root-header container-fluid px-0 mb-3">
+    <div className="root-header container-fluid px-0">
       <LinearProgress className={ state.loading ? '-opacity' : '-no-opacity'}></LinearProgress>
-      <h1 className="text-center">CiC Forum</h1>
+      <h1 className="text-center title py-2">CiC Forum</h1>
       <Nav></Nav>
     </div>
   );

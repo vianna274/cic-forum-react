@@ -1,11 +1,14 @@
-@import './typography.scss';
+@import './reset.scss';
+@import './base.scss';
 
 body, html, #root {
   height: 100%;
+  background-color: $white;
 }
 
 h1, h2, h3, h4 {
   font-family: 'Merriweather', serif;
+  color: $primary-dark;
 }
 
 h1 {
@@ -19,4 +22,34 @@ h2, h3 {
 p, span, strong {
   font-family: 'Roboto', sans-serif;
   font-size: $small;
+  color: $primary-dark;
+}
+
+.MuiIcon-colorPrimary-29 {
+  color: $primary-dark !important;
+}
+
+.MuiFab-primary-54 {
+  background-color: $secondary !important;
+  color: $white !important;
+
+  &:hover {
+    background-color: darken($secondary, 5%) !important;
+  }
+
+  span {
+    color: $white;
+  }
+}
+
+.MuiFab-secondary-55 {
+  background-color: $accent !important;
+
+  &:hover {
+    background-color: darken($accent, 15%) !important;
+  }
+
+  span {
+    color: $white;
+  }
 }

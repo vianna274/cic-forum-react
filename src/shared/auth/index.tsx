@@ -9,7 +9,7 @@ import { ErrorType } from '../../utils/error/models';
 import { FirebaseAuth } from '../../core/firebase/handler';
 import { User, UserActionType } from '../../core/user/models';
 import { UserContext } from '../../core/user/reducer';
-import { UserService } from '../../core/user/service';
+import UserService from '../../core/user/service';
 import { toast } from 'react-toastify';
 import { ERROR_MESSAGES } from '../../utils/error/constants';
 
@@ -38,7 +38,7 @@ function Auth({ history }) {
         if (!user) { return resetUser(); }
 
         setFirebaseUser(user);
-        const dbUser = await UserService.getFacebook(user.uid, cancelToken);
+        const dbUser = await UserService.fetchByFacebookId(user.uid, cancelToken);
         setUser(dbUser);
       } catch (err) {
         const type = ErrorHandler.getType(err);

@@ -1,4 +1,4 @@
-import { ForumPostData, ForumSemester, ForumCourse } from '../../domain/forum/models';
+import { ForumPostData, ForumCourse, ForumCategoryData } from '../../domain/forum/models';
 
 export const postMock: ForumPostData = {
   id: '231',
@@ -53,14 +53,38 @@ export const postsMock: ForumPostData[] = [
 
 export const coursesMock: ForumCourse[] = [
   {
-    id: '11',
-    title: 'Sei la',
-    description: 'duashdsia',
+    id: '1',
+    title: 'INFXXX - Algoritmos e Programação',
+    description: 'Cadeira de Algoritmos e Programação',
+    posts: postsMock,
+  },
+  {
+    id: '2',
+    title: 'INFXXX - Fundamentos de Programação',
+    description: 'Cadeira de Fundamentos de Programação',
+    posts: postsMock,
+  },
+  {
+    id: '3',
+    title: 'INFXXX - Cálculo 1',
+    description: 'Cadeira de Cálculo 1',
+    posts: postsMock,
+  },
+  {
+    id: '4',
+    title: 'INFXXX - Matemática Discreta',
+    description: 'Cadeira de Matemática Discreta',
+    posts: postsMock,
+  },
+  {
+    id: '5',
+    title: 'INFXXX - Arquitetura de Computadores 1',
+    description: 'Cadeira de Arquitetura de Computadores 1',
     posts: postsMock,
   },
 ];
 
-export const semestersMock: ForumSemester[] = [
+export const categoriesMock: ForumCategoryData[] = [
   {
     id: '1',
     title: 'Primeiro Semestre',

@@ -1,0 +1,20 @@
+@import '../../../../styles/base.scss';
+
+#course {
+  border: 1px solid $gray;
+  transition: all ease .4s;
+  background: linear-gradient(120deg, $primary, $primary-dark);
+  background-size: 150% 150%;
+
+  &:hover {
+    background-position: -200px;
+  }
+
+  .title {
+    font-size: $large;
+  }
+
+  .title, .description, .length {
+    color: $primary-light;
+  }
+}

@@ -1,7 +1,7 @@
 import axios, { CancelTokenSource } from 'axios';
 
 import { sleep } from '../../utils/sleep';
-import { semestersMock, postMock } from '../../utils/mocks/forum.response';
+import { categoriesMock, postMock } from '../../utils/mocks/forum.response';
 import { User } from '../../core/user/models';
 import { ForumPostData } from './models';
 import { ErrorType } from '../../utils/error/models';
@@ -9,18 +9,27 @@ import { ErrorType } from '../../utils/error/models';
 export const ForumService = {
   getCancelToken: () => axios.CancelToken.source(),
 
-  getSemesters: async (source: CancelTokenSource) => {
+  fetchCategories: async (source: CancelTokenSource) => {
     try {
-      sleep(3000);
-      return semestersMock;
+      await sleep(1000);
+      return categoriesMock;
     } catch (err) {
       throw(err);
     }
   },
 
-  getPost: async (id: string, source: CancelTokenSource) => {
+  fetchCategory: async (id: string, source: CancelTokenSource) => {
     try {
-      sleep(1000);
+      await sleep(1000);
+      return categoriesMock[0];
+    } catch (err) {
+      throw(err);
+    }
+  },
+
+  fetchPost: async (id: string, source: CancelTokenSource) => {
+    try {
+      await sleep(1000);
       return postMock;
     } catch (err) {
       throw(err);

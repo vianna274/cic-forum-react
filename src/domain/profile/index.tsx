@@ -6,7 +6,7 @@ import { ApplicationActionType } from '../../core/application/models';
 import { ApplicationContext } from '../../core/application/reducer';
 import { User, UserActionType } from '../../core/user/models';
 import { UserContext } from '../../core/user/reducer';
-import { UserService } from '../../core/user/service';
+import UserService from '../../core/user/service';
 import { ERROR_MESSAGES } from '../../utils/error/constants';
 import { ErrorHandler } from '../../utils/error/handler';
 import { ErrorType } from '../../utils/error/models';
@@ -63,7 +63,7 @@ export default function Profile() {
 
   return (
     <div className="container-fluid d-flex justify-content-center">
-      <Paper className="d-flex justify-content-center flex-column mt-5 col-10 col-sm-8">
+      <Paper className="d-flex justify-content-center flex-column col-10 col-sm-8">
         <form
           className="d-flex flex-column align-items-center px-3"
           onSubmit={ev => submit(ev)}>

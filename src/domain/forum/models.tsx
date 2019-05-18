@@ -17,7 +17,7 @@ export interface ForumCourse {
   posts: ForumPostData[];
 }
 
-export interface ForumSemester {
+export interface ForumCategoryData {
   title: string;
   id: string;
   courses: ForumCourse[];
@@ -25,14 +25,14 @@ export interface ForumSemester {
 }
 
 export interface ForumState {
-  semesters: ForumSemester[];
+  categories: ForumCategoryData[];
 }
 
 export enum ForumActionType {
-  SET_SEMESTERS = 'set_semesters',
+  SET_CATEGORIES = 'set_categories',
 }
 
 export interface ForumAction {
   type: ForumActionType;
-  semesters: ForumSemester[];
+  categories: ForumCategoryData[];
 }

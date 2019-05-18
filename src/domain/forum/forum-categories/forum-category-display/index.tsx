@@ -1,13 +1,13 @@
 import React from 'react';
 
 import './style.scss';
-import { ForumSemester } from '../../models';
+import { ForumCategoryData } from '../../models';
 
 export interface ForumCategoryProps {
-  category: ForumSemester;
+  category: ForumCategoryData;
 }
 
-export default function ForumSemesterDisplay({ category }: ForumCategoryProps) {
+export default function ForumCategoryDisplay({ category }: ForumCategoryProps) {
   return (
     <div className="category">
       <img className="image" src={category.imageUrl} alt={`Click to access ${category.title}`}></img>

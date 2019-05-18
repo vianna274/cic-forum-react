@@ -1,4 +1,4 @@
-import './nav.scss';
+import './style.scss';
 
 import { Icon, IconButton, MenuItem } from '@material-ui/core';
 import React, { useContext, useState } from 'react';
@@ -19,7 +19,7 @@ export default function Nav() {
         className="profile-pic mt-5 mb-3"
         src={state.firebaseUser!.photoURL || ''}
         alt="Profile" />
-      <p className="name"> {state.firebaseUser!.displayName} </p>
+      <p className="name py-4"> {state.firebaseUser!.displayName} </p>
       <Link to="/">
         <MenuItem onClick={() => setOpen(false)}>Home</MenuItem>
       </Link>
@@ -46,7 +46,9 @@ export default function Nav() {
 
   return (
     <Sidebar
-      sidebarClassName="custom-sidebar-class"
+      rootClassName="sidebar"
+      sidebarClassName="menu"
+      contentClassName="content"
       sidebar={<div>
         <IconButton
           color="primary"
@@ -67,6 +69,5 @@ export default function Nav() {
         <Icon color="primary">menu_circle</Icon>
       </IconButton>
     </Sidebar>
-
   );
 }
