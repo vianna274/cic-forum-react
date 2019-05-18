@@ -8,12 +8,14 @@ const applicationDispatcher = (state: ApplicationState, action: ApplicationActio
       return { ...state, loading: false };
     case ApplicationActionType.LOADING:
       return { ...state, loading: true };
+    case ApplicationActionType.MODAL:
+      return { ...state, modal: action.modal };
     default:
       return state;
   }
 };
 
-export const initialContext: ApplicationState = { loading: false };
+export const initialContext: ApplicationState = { loading: false, modal: false };
 
 export const ApplicationContext =
   createContext(initialContext as unknown as ContextProps<ApplicationState>);

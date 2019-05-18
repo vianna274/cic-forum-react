@@ -45,16 +45,16 @@ export default function Login() {
   };
 
   return (
-    <div className="container-fluid d-flex justify-content-center">
+    <div className="container-fluid d-flex justify-content-center login-page">
       <Paper
         className="paper input-group px-0 col-10 col-sm-8 col-md-6 ">
-        <p className="description mt-4">Entre com a opção abaixo :)</p>
+        <p className="description mt-4 text-center">Login with the option below :)</p>
         <Button
           type="submit"
           variant="contained"
           color="primary"
           id="sign-in-button"
-          className="sign-in-button mt-5 mb-3"
+          className="sign-in-button mt-5 mb-3 mx-5"
           onClick={ev => facebookAuth(ev)}
         >
           Sign in with Facebook

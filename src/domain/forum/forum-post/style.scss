@@ -1,10 +1,12 @@
-@import '../../../styles/base.scss';
+@import "../../../styles/base.scss";
 
-.description {
-  font-size: $x-small;
-}
+.forum-post {
+  .description {
+    font-size: $x-small;
+  }
 
-.content {
-  font-size: $medium;
-  white-space: pre-wrap;
+  .content {
+    font-size: $medium;
+    white-space: pre-wrap;
+  }
 }

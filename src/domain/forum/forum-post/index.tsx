@@ -40,7 +40,7 @@ export default function ForumPost(props) {
   if (!post) { return <></>; }
 
   return (
-    <div className="container-fluid px-2 d-flex justify-content-center">
+    <div className="container-fluid px-2 d-flex justify-content-center forum-post">
       <Paper className="col-12 col-sm-8 col-md-6 px-2 pt-3 mt-5">
         <h1 className="title text-center pb-2">{post.title}</h1>
         <p className="description">{post.description}</p>

@@ -1,13 +1,18 @@
-@import './reset.scss';
-@import './base.scss';
+@import "./reset.scss";
+@import "./base.scss";
 
-body, html, #root {
+body,
+html,
+#root {
   height: 100%;
   background-color: $white;
 }
 
-h1, h2, h3, h4 {
-  font-family: 'Merriweather', serif;
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Merriweather", serif;
   color: $primary-dark;
 }
 
@@ -15,13 +20,19 @@ h1 {
   font-size: $x-large;
 }
 
-h2, h3 {
+h2 {
   font-size: $large;
 }
 
-p, span, strong {
-  font-family: 'Roboto', sans-serif;
-  font-size: $small;
+h3 {
+  font-size: $medium;
+}
+
+p,
+span,
+strong {
+  font-family: "Roboto", sans-serif;
+  font-size: $medium;
   color: $primary-dark;
 }
 
@@ -51,5 +62,17 @@ p, span, strong {
 
   span {
     color: $white;
+  }
+}
+
+.main-button {
+  background-color: $accent !important;
+
+  span {
+    color: $primary-light;
+  }
+
+  &:hover {
+    background-color: darken($accent, 10%) !important
   }
 }
